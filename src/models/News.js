@@ -1,0 +1,20 @@
+const { DataTypes } = require('sequelize');
+const sequelize = require('../config/database');
+
+const News = sequelize.define('News', {
+    ID_news: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true,
+    },
+    title: { type: DataTypes.STRING(255), allowNull: false },
+    content: { type: DataTypes.TEXT },
+    image_url: { type: DataTypes.STRING(500) },
+    category: { type: DataTypes.STRING(100) },
+    ID_user: { type: DataTypes.INTEGER },
+    published_at: { type: DataTypes.DATE, defaultValue: DataTypes.NOW },
+}, {
+    tableName: 'news',
+});
+
+module.exports = News;
