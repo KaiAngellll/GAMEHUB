@@ -1,3 +1,4 @@
+
 const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
@@ -13,6 +14,21 @@ const app = express();
 app.use(helmet());
 app.use(cors());
 app.use(express.json());
+
+// Запрещаем поисковым системам индексировать API
+app.use('/api', (req, res, next) => {
+    res.setHeader('X-Robots-Tag', 'noindex, nofollow');
+    next();
+});
+
+// robots.txt для API-сервера
+app.get('/robots.txt', (req, res) => {
+    res.type('text/plain');
+    res.send(
+        'User-agent: *\n' +
+        'Disallow: /\n'
+    );
+});
 
 app.get('/', (req, res) => {
     res.json({
