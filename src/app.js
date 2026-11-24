@@ -1,4 +1,3 @@
-
 const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
@@ -15,7 +14,7 @@ app.use(helmet());
 app.use(cors());
 app.use(express.json());
 
-// Запрещаем поисковым системам индексировать API
+// запрещаем поисковым системам индексировать API
 app.use('/api', (req, res, next) => {
     res.setHeader('X-Robots-Tag', 'noindex, nofollow');
     next();

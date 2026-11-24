@@ -1,3 +1,6 @@
+
+require('dotenv').config();
+
 const app = require('./app');
 const { sequelize } = require('./models');
 
@@ -6,14 +9,14 @@ const PORT = process.env.PORT || 3000;
 (async () => {
     try {
         await sequelize.authenticate();
-        console.log('подключение к SQL Server установлено');
-        console.log('модели успешно загружены');
+        console.log('Подключение к Supabase PostgreSQL установлено');
+        console.log('Модели успешно загружены');
 
         app.listen(PORT, () => {
-            console.log(`сервер запущен: http://localhost:${PORT}`);
+            console.log(`Сервер запущен: http://localhost:${PORT}`);
         });
     } catch (error) {
-        console.error('ошибка запуска:', error);
+        console.error('Ошибка запуска:', error);
         process.exit(1);
     }
 })();
