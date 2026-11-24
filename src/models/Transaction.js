@@ -7,11 +7,30 @@ const Transaction = sequelize.define('Transaction', {
         primaryKey: true,
         autoIncrement: true,
     },
-    ID_user: { type: DataTypes.INTEGER, allowNull: false },
-    type: { type: DataTypes.STRING(50), allowNull: false },
-    amount: { type: DataTypes.DECIMAL(10, 2), allowNull: false },
-    status: { type: DataTypes.STRING(50), defaultValue: 'pending' },
-    created_at: { type: DataTypes.DATE, defaultValue: DataTypes.NOW },
+    ID_user: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+    },
+    type: {
+        type: DataTypes.STRING(50),
+        allowNull: false,
+    },
+    amount: {
+        type: DataTypes.DECIMAL(10, 2),
+        allowNull: false,
+    },
+    status: {
+        type: DataTypes.STRING(50),
+        defaultValue: 'pending',
+    },
+    description: {
+        type: DataTypes.STRING(1000),
+        allowNull: true,
+    },
+    created_at: {
+        type: DataTypes.DATE,
+        defaultValue: DataTypes.NOW,
+    },
 }, {
     tableName: 'transactions',
 });

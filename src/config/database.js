@@ -1,3 +1,4 @@
+
 const { Sequelize } = require('sequelize');
 require('dotenv').config();
 
@@ -6,17 +7,20 @@ const sequelize = new Sequelize(
     process.env.DB_USER,
     process.env.DB_PASSWORD,
     {
-        host: process.env.DB_SERVER || 'localhost',
-        port: parseInt(process.env.DB_PORT) || 1433,
-        dialect: 'mssql',
+        host: process.env.DB_HOST,
+        port: Number(process.env.DB_PORT) || 5432,
+        dialect: 'postgres',
         logging: false,
+
         dialectOptions: {
-            options: {
-                encrypt: process.env.DB_ENCRYPT === 'true',
-                trustServerCertificate: process.env.DB_TRUST_CERT === 'true',
-                enableArithAbort: true,
-            },
+            ssl: process.env.DB_SSL === 'true'
+                ? {
+                    require: true,
+                    rejectUnauthorized: false,
+                }
+                : false,
         },
+
         define: {
             timestamps: false,
             freezeTableName: true,
